@@ -1,0 +1,121 @@
+*** Settings ***
+Library           Selenium2Library
+
+Test Teardown     Close Browser
+
+*** Keywords ***
+Test_Setup_Steps    [Arguments]    ${adress}
+    Open browser    ${adress}
+    Maximize Browser Window
+    Click Element    css=#mainMenu > ul > li:nth-child(7) > a
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    Click Element    css=#alogin2
+
+Test_Setup_Steps320    [Arguments]    ${adress}
+    Open browser    ${adress}
+
+    execute javascript     $('.zopim').remove();
+    Set Window Size    ${320}    ${480}
+    Click Element    css=.btn.btn-orange.visible-xs.pull-right
+    execute javascript     $('.zopim').remove();
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    execute javascript     $('.zopim').remove();
+    Click Element    css=#alogin2
+
+
+Test_Setup_Steps768    [Arguments]    ${adress}
+    Open browser    ${adress}
+
+    execute javascript     $('.zopim').remove();
+    Set Window Size    ${768}    ${1024}
+    Click Element    css=.btn.btn-orange.visible-xs.pull-right
+    execute javascript     $('.zopim').remove();
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    execute javascript     $('.zopim').remove();
+    Click Element    css=#alogin2
+
+desktop    [Arguments]    ${directory}
+
+
+    Capture Page Screenshot    ${directory}/desktop/main.png
+    Click Link    /transactions
+    Capture Page Screenshot    ${directory}/desktop/1transactions.png
+    Click Link    /profile
+    Capture Page Screenshot    ${directory}/desktop/1mysettings.png
+    Click Link    /dashboard
+    Capture Page Screenshot    ${directory}/desktop/1myorders.png
+    Click Link    /orderform
+    Capture Page Screenshot    ${directory}/desktop/1neworder.png
+    Click Link    /contacts.html
+    Capture Page Screenshot    ${directory}/desktop/2contacts.png
+    Click Link    /samples.html
+    Capture Page Screenshot    ${directory}/desktop/2samples.png
+    Click Link    /how-it-works.html
+    Capture Page Screenshot    ${directory}/desktop/2howitworks.png
+    Click Link    /faq.html
+    Capture Page Screenshot    ${directory}/desktop/2faq.png
+
+    Click Link    /prices.html
+    Capture Page Screenshot    ${directory}/desktop/2prices.png
+    Mouse Over    css=#WR1C1
+    Capture Page Screenshot    ${directory}/desktop/2prices_mouse_over.png
+    Click Element    css=.highlight
+    Capture Page Screenshot    ${directory}/desktop/2order.png
+    Click Link    /blog.html
+    Capture Page Screenshot    ${directory}/desktop/3blog.png
+    Click Link    /contacts.html
+    Capture Page Screenshot    ${directory}/desktop/3contact.png
+
+*** Variables ***
+
+${login}    alexjust2014@gmail.com
+${password}    1234
+
+${adress 1}    http://essayclick.db.rv.ua/
+${adress 2}    http://writemyessay4me.db.rv.ua/
+${adress 3}    http://pro-essay-writer.db.rv.ua
+${adress 4}    http://essaydragon.db.rv.ua
+${adress 5}    http://writemypaper4me.db.rv.ua
+${adress 6}    http://justbuyessay.db.rv.ua/
+
+${directory 1}    essayclick
+${directory 2}    writemyessay4me
+${directory 3}    proessaywriter
+${directory 4}    essaydragon
+${directory 5}    writemypaper4me
+${directory 6}    justbuyessay
+
+*** Test Cases ***
+
+7. essayclick desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 1}
+    desktop    ${directory 1}
+
+8. writemyessay4me desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 2}
+    desktop    ${directory 2}
+
+9. proessaywriter desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 3}
+    desktop    ${directory 3}
+
+10. essaydragon desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 4}
+    desktop    ${directory 4}
+
+11. writemypaper4me desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 5}
+    desktop    ${directory 5}
+
+12. justbuyessay desktop
+    [Tags]  Desktop
+    Test_Setup_Steps    ${adress 6}
+    desktop    ${directory 6}
