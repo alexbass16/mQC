@@ -7,7 +7,7 @@ Test Teardown     Close Browser
 Test_Setup_Steps    [Arguments]    ${adress}
     Open browser    ${adress}
     Maximize Browser Window
-    Click Element    css=#mainMenu > ul > li:nth-child(7) > a
+    Click Element    css=.nav > li:nth-child(7) > a:nth-child(1)
     Input Text    css=#remail    ${login}
     Input Text    css=#rpassword    ${password}
     Click Element    css=#alogin2
