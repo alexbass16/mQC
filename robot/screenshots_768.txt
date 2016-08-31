@@ -1,0 +1,299 @@
+*** Settings ***
+Library           Selenium2Library
+
+Test Teardown     Close Browser
+
+*** Keywords ***
+Test_Setup_Steps    [Arguments]    ${adress}
+    Open browser    ${adress}
+    Maximize Browser Window
+    Click Element    css=#mainMenu > ul > li:nth-child(7) > a
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    Click Element    css=#alogin2
+
+Test_Setup_Steps320    [Arguments]    ${adress}
+    Open browser    ${adress}
+
+    execute javascript    return $('.zopim').remove();
+    sleep    5s
+    Set Window Size    ${320}    ${480}
+    execute javascript    return $('.zopim').remove();
+    sleep    5s
+    Click Element    css=.btn.btn-orange.visible-xs.pull-right
+    execute javascript    return $('.zopim').remove();
+    sleep    5s
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=#alogin2
+
+Test_Setup_Steps768    [Arguments]    ${adress}
+    Open browser    ${adress}
+
+    execute javascript    return $('.zopim').remove();
+    Set Window Size    ${768}    ${1024}
+    sleep    10s
+
+    Click Element    css=.btn.btn-orange.visible-xs.pull-right
+    execute javascript    return $('.zopim').remove();
+    sleep    5s
+    Input Text    css=#remail    ${login}
+    Input Text    css=#rpassword    ${password}
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=#alogin2
+
+768    [Arguments]    ${directory}
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/main.png
+
+    sleep    5s
+    Click Link    /transactions
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/1transactions.png
+    sleep    5s
+    Click Link    /profile
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/1mysettings.png
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Link    /dashboard
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/1myorders.png
+    execute javascript    return $('.zopim').remove();
+ 
+    Click Element    css=.navbar-toggle.collapsed                         #main menu
+    Sleep    5s
+    Click Element    xpath=.//*[@id='mainMenu']/ul/li[6]/a
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/2contacts.png
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=.navbar-toggle.collapsed
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=.//*[@id='mainMenu']/ul/li[5]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/2samples.png
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=.navbar-toggle.collapsed
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=.//*[@id='mainMenu']/ul/li[4]/a
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/2howitworks.png
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=.navbar-toggle.collapsed
+    sleep    15s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=.//*[@id='mainMenu']/ul/li[3]/a
+    sleep    15s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/2faq.png
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    css=.navbar-toggle.collapsed
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=.//*[@id='mainMenu']/ul/li[2]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();
+    Capture Page Screenshot    ${directory}/768/2prices.png
+
+    sleep    5s
+    execute javascript    return $('.zopim').remove();                          #footermenu
+
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    execute javascript     return $('.zopim').remove();
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[1]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_order.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[2]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_prices.png
+
+    sleep    15s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[3]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_faq.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[4]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_howitworks.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[5]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_blog.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[6]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_about_us.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[7]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_samples.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[8]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_contacts.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[9]/a
+    sleep    10s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_becomeawriter.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();                                    #footermenu_legalinfo
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/a
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/ul/li[1]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_terms&conditions.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/a
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/ul/li[2]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_moneyback.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/a
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/ul/li[3]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_privacypolicy.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/a
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/ul/li[4]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_revision_policy.png
+
+    sleep    2s
+    execute javascript    return $('.zopim').remove();
+    Click Element    xpath=html/body/footer/div[2]/div[1]/button
+    sleep    5s
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/a
+    Click Element    xpath=.//*[@id='bottomMenu']/ul/li[10]/div/ul/li[5]/a
+    sleep    5s
+    execute javascript    return $('.zopim').remove();   
+    Capture Page Screenshot    ${directory}/768/footer_disclaimer.png
+
+*** Variables ***
+
+${login}    alexjust2014@gmail.com
+${password}    1234
+
+${adress 1}    http://essayclick.db.rv.ua/
+${adress 2}    http://writemyessay4me.db.rv.ua/
+${adress 3}    http://pro-essay-writer.db.rv.ua
+${adress 4}    http://essaydragon.db.rv.ua
+${adress 5}    http://writemypaper4me.db.rv.ua
+${adress 6}    http://justbuyessay.db.rv.ua
+
+${directory 1}    essayclick
+${directory 2}    writemyessay4me
+${directory 3}    proessaywriter
+${directory 4}    essaydragon
+${directory 5}    writemypaper4me
+${directory 6}    justbuyessay
+
+*** Test Cases ***
+
+1. essayclick768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 1}
+    768    ${directory 1}
+
+2. writemyessay4me768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 2}
+    768    ${directory 2}
+
+3. proessaywriter768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 3}
+    768    ${directory 3}
+
+4. essaydragon768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 4}
+    768    ${directory 4}
+
+5. writemypaper4me768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 5}
+    768    ${directory 5}
+
+6. justbuyessay768
+    [Tags]  768
+    Test_Setup_Steps768    ${adress 6}
+    768    ${directory 6}
+
+
