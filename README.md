@@ -1,2 +1,2 @@
 # mQC
-test scope with robot framework
+here i'm learning python, robot framework and shell scripting
