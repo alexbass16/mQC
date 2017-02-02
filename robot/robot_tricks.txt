@@ -1,0 +1,45 @@
+#test for querying https URL
+
+Open Browser SSL
+    [Arguments]    ${_request_url}
+    ${desired_capabilities}    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.FIREFOX    sys, selenium.webdriver
+    Set To Dictionary    ${desired_capabilities}    acceptSslCerts    ${True}
+    Set To Dictionary    ${desired_capabilities}    marionette    ${False}
+    Open Browser    ${_request_url}    firefox    desired_capabilities=${desired_capabilities} 
+
+#test for querying http URL with different languages
+
+Open Browser Language
+    [Arguments]    ${_request_url}    ${locale}
+    [Documentation]    Starts a Firefox browser with specified locale.
+    ${profile}=    Evaluate    sys.modules['selenium.webdriver'].FirefoxProfile()    sys
+    Call Method    ${profile}    set_preference    intl.accept_languages    ${locale}
+    Create WebDriver    Firefox    firefox_profile=${profile}
+    Go To    ${_request_url} 
+
+#different locale for one URL
+
+Loop_Language
+    ${c_val} =    Convert To Integer   0
+    @{titles} =    Create List    text11    text12    text13    text14    text15 
+    ...    text16    text17    text18    text19    text20
+    @{pages1} =    Create List    pg1    pg2    pg3    pg4    pg5
+    ...    pg6    pg7    pg8    pg9    pg10
+    @{pages2} =     Create List    text1    text2    text3    text4    text5    
+    ...    text6    text7    text8    text9    text10    
+
+    @{languages} =    Create List    de-de    ru    it    ko    es
+    ...    zh-tw    en-us    fr-fr    pt-br    zh-cn
+
+    : FOR    ${language}    IN    @{languages}
+    \    Open Browser Language    ${request_url}    ${language}
+    \    ${current_title}=    Get From List    ${titles}    ${c_val}
+    \    Title Should Be    ${current_title}
+    \    ${current_page1}=    Get From List    ${pages1}    ${c_val}
+    \    Page Should Contain    ${current_page1}
+    \    ${current_page2}=    Get From List    ${pages2}    ${c_val}
+    \    Page Should Contain    ${current_page2}
+    \    Close Browser
+    \    ${c_val}=    Set variable    ${c_val + 1}
+    \    Sleep    5
+    [Teardown]    Run Keywords    Close All Browsers
